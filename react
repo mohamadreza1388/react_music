@@ -1,0 +1,37 @@
+import fs from 'fs';
+import path from 'path';
+
+const componentName = process.argv[2];
+
+if (!componentName) {
+    console.error('pls inter component name');
+    process.exit(1);
+}
+
+const componentsPath = path.resolve('src', 'components');
+const componentFilePath = path.join(componentsPath, `${componentName}.jsx`);
+
+if (!fs.existsSync(componentsPath)) {
+    console.error('directory not found!');
+    process.exit(1);
+}
+
+const componentContent = `
+const ${componentName} = () => {
+    return (
+        <div>
+            <h1>${componentName}</h1>
+        </div>
+    );
+};
+
+export default ${componentName};
+`;
+
+if (fs.existsSync(componentFilePath)) {
+    console.error(`repetitive!!`);
+    process.exit(1);
+}
+
+fs.writeFileSync(componentFilePath, componentContent.trim());
+console.log(`successfully`);

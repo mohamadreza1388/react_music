@@ -50,4 +50,8 @@
     *{
         font-family: "yekanbakh", IRANYekan, sans-serif;
     }
+
+    body {
+        @apply bg-[url("/images/bg.png"),linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)_)] bg-[center_left] bg-no-repeat bg-cover bg-fixed;
+    }
 }
